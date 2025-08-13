@@ -1,0 +1,17 @@
+[project]
+name = "deep-agents-playground"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "deepagents>=0.0.3",
+    "langchain>=0.3.27",
+    "langchain-mcp-adapters>=0.1.9",
+    "langchain-ollama>=0.3.6",
+    "langgraph>=0.6.4",
+    "jupyter>=1.1.1",
+    "ipykernel>=6.30.1",
+    "fastmcp>=2.11.3",
+    "tavily-python>=0.7.10",
+]
