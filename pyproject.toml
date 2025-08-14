@@ -20,4 +20,8 @@ dependencies = [
     "tqdm>=4.67.1",
     "llama-index-llms-ollama>=0.6.2",
     "llama-index-embeddings-ollama>=0.6.0",
+    "vllm>=0.8.5.post1",
+    "bentoml>=1.4.21",
+    "fastapi>=0.116.1",
+    "pip-tools>=7.5.0",
 ]
