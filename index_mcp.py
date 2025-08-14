@@ -17,7 +17,8 @@ kwargs = {
 llm = Ollama(model="gpt-oss:20b", request_timeout=600)
 mcp = FastMCP(
     name='Alita and MCP Zero Knowledge Base',
-    port=8000
+    port=8000,
+    host="0.0.0.0",
 )
 
 @mcp.tool()
@@ -45,4 +46,4 @@ async def mcp_zero_documentation(query: str) -> str:
     return str(response)
 
 if __name__ == "__main__":
-    mcp.run(transport="sse")
+    mcp.run(transport="streamable-http")
