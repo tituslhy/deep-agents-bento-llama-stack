@@ -24,4 +24,5 @@ dependencies = [
     "bentoml>=1.4.21",
     "fastapi>=0.116.1",
     "pip-tools>=7.5.0",
+    "pyngrok>=7.3.0",
 ]

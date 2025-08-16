@@ -760,6 +760,7 @@ dependencies = [
     { name = "llama-index-embeddings-ollama" },
     { name = "llama-index-llms-ollama" },
     { name = "pip-tools" },
+    { name = "pyngrok" },
     { name = "tavily-python" },
     { name = "tqdm" },
     { name = "vllm" },
@@ -783,6 +784,7 @@ requires-dist = [
     { name = "llama-index-embeddings-ollama", specifier = ">=0.6.0" },
     { name = "llama-index-llms-ollama", specifier = ">=0.6.2" },
     { name = "pip-tools", specifier = ">=7.5.0" },
+    { name = "pyngrok", specifier = ">=7.3.0" },
     { name = "tavily-python", specifier = ">=0.7.10" },
     { name = "tqdm", specifier = ">=4.67.1" },
     { name = "vllm", specifier = ">=0.8.5.post1" },
@@ -3917,6 +3919,18 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/b0/77/a5b8c569bf593b0140bde72ea885a803b82086995367bf2037de0159d924/pygments-2.19.2.tar.gz", hash = "sha256:636cb2477cec7f8952536970bc533bc43743542f70392ae026374600add5b887", size = 4968631, upload-time = "2025-06-21T13:39:12.283Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/c7/21/705964c7812476f378728bdf590ca4b771ec72385c533964653c68e86bdc/pygments-2.19.2-py3-none-any.whl", hash = "sha256:86540386c03d588bb81d44bc3928634ff26449851e99741617ecb9037ee5ec0b", size = 1225217, upload-time = "2025-06-21T13:39:07.939Z" },
+]
+
+[[package]]
+name = "pyngrok"
+version = "7.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "pyyaml" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/7b/64/e5646daaa4a84ecb368c09d42753f1c6e1a41b38579a36fda8ffe5716d9f/pyngrok-7.3.0.tar.gz", hash = "sha256:f2240e49b9dec9b27eba00f1444cd3cce7ac45d1bcc493a9b76ee63c2da9882c", size = 44266, upload-time = "2025-08-04T16:08:07.015Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/ac/6b/664772910199399db3706243488eb3a986bd8435583caef9cf8359eecfaa/pyngrok-7.3.0-py3-none-any.whl", hash = "sha256:708c48276d3a887d4263f0f4bc8171e22d66df6cfa74a4857625c83160603166", size = 25394, upload-time = "2025-08-04T16:08:05.368Z" },
 ]
 
 [[package]]
