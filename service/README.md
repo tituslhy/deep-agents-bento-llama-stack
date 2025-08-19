@@ -118,9 +118,7 @@ bentoml cloud login
 Create a BentoCloud secret to store the required environment variable and reference it for deployment.
 
 ```bash
-bentoml secret create huggingface HF_TOKEN=$HF_TOKEN
-
-bentoml deploy service:LLM --secret huggingface
+bentoml deploy service:LLM --instance-type "gpu.a.100.1"
 ```
 
 Once the application is up and running on BentoCloud, you can access it via the exposed URL.

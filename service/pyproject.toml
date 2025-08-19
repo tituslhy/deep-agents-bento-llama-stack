@@ -1,10 +1,10 @@
 [project]
-name = "gpt-oss-20b"
+name = "qwen3-8b"
 version = "1.4.21"
 description = "Self-host LLMs with vLLM and BentoML"
 readme = "README.md"
 requires-python = ">=3.11"
-authors = [{ name = "Titus Lim", email = "contact@bentoml.com" }]
+authors = [{ name = "BentoML Team", email = "contact@bentoml.com" }]
 
 [project.license]
 text = "Apache-2.0"
@@ -21,25 +21,24 @@ service = "service.py:LLM"
 include = ["*.py", "*.toml", "*.txt", "*.md", "templates/*"]
 
 [tool.bentoml.build.args]
-name = "gpt-oss-20b"
+name = "qwen3-8b"
 gpu_type = "nvidia-h100-80gb"
 tp = 1
-model_id = "openai/gpt-oss-20b"
-autotune = [1, 2, 4, 8, 16, 24]
-post = [
-  "uv pip install -U openai",
-  "uv pip install --pre vllm==0.10.1+gptoss --extra-index-url https://wheels.vllm.ai/gpt-oss/ --extra-index-url https://download.pytorch.org/whl/nightly/cu128 --index-strategy unsafe-best-match",
-]
-exclude = ["original/**/*", "metal"]
-attn_backend = "FLASH_ATTN"
-skip_flashinfer = true
-cli_args = ["--chat-template", "templates/tool_gpt_oss.jinja"]
-envs = [{ name = "HF_TOKEN" }]
+autotune = [1, 2, 4, 8, 16, 24, 32, 40]
+model_id = "Qwen/Qwen3-8B"
+reasoning_parser = "deepseek_r1"
+tool_parser = "hermes"
 
 [tool.bentoml.build.args.metadata]
-description = "GPT OSS MoE 20B"
-provider = "OpenAI"
-gpu_recommendation = "Nvidia GPUs with at least 80GB VRAM (e.g about 1 H100 GPU)."
+description = "Qwen 3 8B"
+provider = "Alibaba"
+gpu_recommendation = "an Nvidia GPU with at least 80GB VRAM (e.g about 1 H100 GPU)."
+
+[tool.bentoml.build.args.hf_generation_config]
+temperature = 0.6
+top_k = 20
+top_p = 0.95
+presence_penalty = 1.5
 
 [tool.ruff]
 extend-include = ["*.ipynb"]
