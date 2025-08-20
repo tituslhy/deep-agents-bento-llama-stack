@@ -9,7 +9,7 @@ bentoml cloud login
 
 Followed by:
 ```
-cd services/standard_service
+cd services/1. standard_service
 ```
 
 Register your HuggingFace Token:
@@ -29,7 +29,7 @@ bentoml cloud login
 
 Followed by:
 ```
-cd services/reasoning_service
+cd services/2. reasoning_service
 ```
 
 and:
