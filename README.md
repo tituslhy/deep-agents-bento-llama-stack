@@ -47,4 +47,3 @@ uv sync
 
 ### Notes
 - [Deep Agent](https://github.com/hwchase17/deepagents) is a LangGraph graph and can be invoked like a LangGraph react agent.
-- Deep Agent does not yet have human-in-the-loop capabilities.
