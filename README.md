@@ -17,7 +17,7 @@ and:
 bentoml deploy service:LLM --instance-type "gpu.l4.1"
 ```
 
-### To deploy Qwen2.5-14B-Instruct on BentoML
+### To deploy Llama3.1-8b-Instruct on BentoML
 ```
 bentoml cloud login
 ```
@@ -27,9 +27,14 @@ Followed by:
 cd services/standard_service
 ```
 
+Register your HuggingFace Token:
+```
+bentoml secret create huggingface HF_TOKEN=$HF_TOKEN
+```
+
 and:
 ```
-bentoml deploy service:LLM --instance-type "gpu.l4.1"
+bentoml deploy service:LLM --instance-type "gpu.l4.1" --secret huggingface
 ```
 
 ## Setup
