@@ -38,9 +38,9 @@ class BentoArgs(pydantic.BaseModel):
     include_system_prompt: bool = True
 
     sharded: bool = False
-    name: str = 'qwen3-8b'
+    name: str = 'qwen2.5-14b'
     gpu_type: str = 'nvidia-h100-80gb'
-    model_id: str = 'Qwen/Qwen3-8B'
+    model_id: str = "Qwen/Qwen2.5-14B-Instruct"
 
     post: list[str] = pydantic.Field(default_factory=list)
     cli_args: list[str] = pydantic.Field(default_factory=list)
