@@ -118,7 +118,7 @@ bentoml cloud login
 Create a BentoCloud secret to store the required environment variable and reference it for deployment.
 
 ```bash
-bentoml deploy service:LLM --instance-type "gpu.a.100.1"
+bentoml deploy service:LLM
 ```
 
 Once the application is up and running on BentoCloud, you can access it via the exposed URL.

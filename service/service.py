@@ -165,54 +165,54 @@ openai_api_app = fastapi.FastAPI()
     resources={'gpu': bento_args.tp, 'gpu_type': bento_args.gpu_type},
 )
 class LLM:
-  hf = hf
+    hf = hf
 
-  def __init__(self):
-      self.stack = contextlib.AsyncExitStack()
-      self.client = httpx.AsyncClient(base_url='http://0.0.0.0:3000/v1')
+    def __init__(self):
+        self.stack = contextlib.AsyncExitStack()
+        self.client = httpx.AsyncClient(base_url='http://0.0.0.0:3000/v1')
 
-  @bentoml.on_startup
-  async def init_engine(self):
-      import vllm.entrypoints.openai.api_server as vllm_api_server
+    @bentoml.on_startup
+    async def init_engine(self):
+        import vllm.entrypoints.openai.api_server as vllm_api_server
 
-      from vllm.utils import FlexibleArgumentParser
-      from vllm.entrypoints.openai.cli_args import make_arg_parser
+        from vllm.utils import FlexibleArgumentParser
+        from vllm.entrypoints.openai.cli_args import make_arg_parser
 
-      args = make_arg_parser(FlexibleArgumentParser()).parse_args([
-        '--no-use-tqdm-on-load',
-        '--disable-uvicorn-access-log',
-        '--disable-fastapi-docs',
-        *bento_args.additional_cli_args,
-      ])
-      args.model = self.hf
-      args.served_model_name = [bento_args.model_id]
+        args = make_arg_parser(FlexibleArgumentParser()).parse_args([
+            '--no-use-tqdm-on-load',
+            '--disable-uvicorn-access-log',
+            '--disable-fastapi-docs',
+            *bento_args.additional_cli_args,
+        ])
+        args.model = self.hf
+        args.served_model_name = [bento_args.model_id]
 
-      router = fastapi.APIRouter(lifespan=vllm_api_server.lifespan)
-      OPENAI_ENDPOINTS = [
-          ['/chat/completions', vllm_api_server.create_chat_completion, ['POST']],
-          ["/responses", vllm_api_server.create_responses, ["POST"]],
-          ['/models', vllm_api_server.show_available_models, ['GET']],
-          ['/health', vllm_api_server.health, ['GET']],
-          ['/ping', vllm_api_server.ping, ['GET']],
-      ]
+        router = fastapi.APIRouter(lifespan=vllm_api_server.lifespan)
+        OPENAI_ENDPOINTS = [
+            ['/chat/completions', vllm_api_server.create_chat_completion, ['POST']],
+            ["/responses", vllm_api_server.create_responses, ["POST"]],
+            ['/models', vllm_api_server.show_available_models, ['GET']],
+            ['/health', vllm_api_server.health, ['GET']],
+            ['/ping', vllm_api_server.ping, ['GET']],
+        ]
 
-      for route, endpoint, methods in OPENAI_ENDPOINTS:
-          router.add_api_route(path=route, endpoint=endpoint, methods=methods, include_in_schema=True)
-      openai_api_app.include_router(router)
+        for route, endpoint, methods in OPENAI_ENDPOINTS:
+            router.add_api_route(path=route, endpoint=endpoint, methods=methods, include_in_schema=True)
+        openai_api_app.include_router(router)
 
-      self.engine = await self.stack.enter_async_context(vllm_api_server.build_async_engine_client(args))
-      self.tokenizer = await self.engine.get_tokenizer()
-      self.vllm_config = await self.engine.get_vllm_config()
-      await vllm_api_server.init_app_state(self.engine, self.vllm_config, openai_api_app.state, args)
+        self.engine = await self.stack.enter_async_context(vllm_api_server.build_async_engine_client(args))
+        self.tokenizer = await self.engine.get_tokenizer()
+        self.vllm_config = await self.engine.get_vllm_config()
+        await vllm_api_server.init_app_state(self.engine, self.vllm_config, openai_api_app.state, args)
 
-  @bentoml.on_shutdown
-  async def teardown_engine(self):
-      await self.stack.aclose()
+    @bentoml.on_shutdown
+    async def teardown_engine(self):
+        await self.stack.aclose()
 
-  async def __is_ready__(self) -> bool:
-      resp = await self.client.get('/ping')
-      return resp.status_code == 200
+    async def __is_ready__(self) -> bool:
+        resp = await self.client.get('/ping')
+        return resp.status_code == 200
 
-  async def __is_alive__(self) -> bool:
-      resp = await self.client.get('/health')
-      return resp.status_code == 200
+    async def __is_alive__(self) -> bool:
+        resp = await self.client.get('/health')
+        return resp.status_code == 200

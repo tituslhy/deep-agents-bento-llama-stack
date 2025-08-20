@@ -25,6 +25,7 @@ name = "qwen3-8b"
 gpu_type = "nvidia-h100-80gb"
 tp = 1
 autotune = [1, 2, 4, 8, 16, 24, 32, 40]
+max_model_len = 16548
 model_id = "Qwen/Qwen3-8B"
 reasoning_parser = "deepseek_r1"
 tool_parser = "hermes"
