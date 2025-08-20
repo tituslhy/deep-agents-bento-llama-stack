@@ -1,6 +1,23 @@
 # Deep Agents with BentoML and Llama Cloud
 This repository explores the use of Deep Agents with MCP tools from Llama Cloud and LLMs served by vLLM on Bento Cloud.
 
+## BentoML
+To deploy on BentoML:
+```
+bentoml cloud login
+```
+
+Followed by:
+```
+cd service
+```
+
+and:
+```
+bentoml deploy service:LLM --instance-type "gpu.l4.1"
+```
+
+
 ## Setup
 This repository uses the uv package installer.
 
