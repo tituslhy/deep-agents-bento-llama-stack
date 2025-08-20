@@ -1,5 +1,5 @@
 [project]
-name = "qwen3-8b"
+name = "llama3.1-8b-instruct"
 version = "1.4.21"
 description = "Self-host LLMs with vLLM and BentoML"
 readme = "README.md"
@@ -21,18 +21,20 @@ service = "service.py:LLM"
 include = ["*.py", "*.toml", "*.txt", "*.md", "templates/*"]
 
 [tool.bentoml.build.args]
-name = "qwen2.5-14b-instruct"
-gpu_type = "nvidia-h100-80gb"
+name = "llama3.1-8b-instruct"
+gpu_type = "nvidia-tesla-h100"
 tp = 1
-autotune = [1, 2, 4, 8, 16, 24, 32, 40]
+autotune = [1, 2, 4, 8, 16]
+cli_args = ["--max-num-batched-tokens", "16384"]
+model_id = "meta-llama/Meta-Llama-3.1-8B-Instruct"
+tool_parser = "llama3_json"
+envs = [{ name = "HF_TOKEN" }]
 max_model_len = 16548
-model_id = "Qwen/Qwen2.5-14B-Instruct"
-tool_parser = "hermes"
 
 [tool.bentoml.build.args.metadata]
-description = "Qwen 2.5 14B Instruct"
-provider = "Alibaba"
-gpu_recommendation = "an Nvidia GPU with at least 80GB VRAM (e.g about 1 H100 GPU)."
+description = "Llama 3.1 8B Instruct"
+provider = "Meta"
+gpu_recommendation = "an Nvidia GPU with at least 40GB VRAM (e.g about 1 A100 GPU)."
 
 [tool.bentoml.build.args.hf_generation_config]
 temperature = 0.6

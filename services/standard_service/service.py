@@ -38,9 +38,9 @@ class BentoArgs(pydantic.BaseModel):
     include_system_prompt: bool = True
 
     sharded: bool = False
-    name: str = 'qwen2.5-14b'
+    name: str = 'llama3.1-8b-instruct'
     gpu_type: str = 'nvidia-h100-80gb'
-    model_id: str = "Qwen/Qwen2.5-14B-Instruct"
+    model_id: str = 'meta-llama/Meta-Llama-3.1-8B-Instruct'
 
     post: list[str] = pydantic.Field(default_factory=list)
     cli_args: list[str] = pydantic.Field(default_factory=list)
@@ -51,9 +51,9 @@ class BentoArgs(pydantic.BaseModel):
     )
     metadata: dict[str, typing.Any] = pydantic.Field(
         default_factory=lambda: {
-          'description': 'Qwen3-8B',
-          'provider': 'Qwen',
-          'gpu_recommendation': 'an Nvidia GPU with at least 80GB VRAM (e.g about 1 H100 GPU).',
+        'description': 'Llama 3.1 8B Instruct',
+        'provider': 'Meta',
+        'gpu_recommendation': 'an Nvidia GPU with at least 80GB VRAM (e.g about 1 H100 GPU).',
         }
     )
 
