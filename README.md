@@ -34,7 +34,7 @@ cd services/2. reasoning_service
 
 and:
 ```
-bentoml deploy service:LLM --instance-type "gpu.l4.1"
+bentoml deploy service:LLM --instance-type "gpu.l4.1" --scaling-min 1 --scaling-max 3
 ```
 
 ## Setup
