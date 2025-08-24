@@ -3,7 +3,7 @@ This repository explores the use of Deep Agents with MCP tools from Llama Cloud 
 
 ## Act One: [🥡 Would You Like an LLM with That? — A Bento Cloud Drive-Thru](https://medium.com/mitb-for-all/would-you-like-an-llm-with-that-a-bento-cloud-drive-thru-7e70f77277d2)
 <p align="center">
-    <img src="./images/ActOne/ActOne.png" height="600">
+    <img src="./images/ActOne/ActOne.png" height="400">
 </p>
 
 #### To deploy Llama3.1-8b-Instruct on BentoML
