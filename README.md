@@ -5,7 +5,8 @@ This repository is a resource to the Medium Article series "Creating a Hypermode
 
 The articles and their respective notes are enumerated as below.
 
-## Act One: [🥡 Would You Like an LLM with That? — A Bento Cloud Drive-Thru](https://medium.com/mitb-for-all/would-you-like-an-llm-with-that-a-bento-cloud-drive-thru-7e70f77277d2)
+## Act One: Deploying a vLLM service on Bento Cloud
+Medium Article: [🥡 Would You Like an LLM with That? — A Bento Cloud Drive-Thru](https://medium.com/mitb-for-all/would-you-like-an-llm-with-that-a-bento-cloud-drive-thru-7e70f77277d2)
 <p align="center">
     <img src="./images/ActOne/ActOne.png" height="400">
 </p>
