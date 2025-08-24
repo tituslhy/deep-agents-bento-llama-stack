@@ -2,6 +2,10 @@
 This repository explores the use of Deep Agents with MCP tools from Llama Cloud and LLMs served by vLLM on Bento Cloud.
 
 ## Act One: [🥡 Would You Like an LLM with That? — A Bento Cloud Drive-Thru](https://medium.com/mitb-for-all/would-you-like-an-llm-with-that-a-bento-cloud-drive-thru-7e70f77277d2)
+<p align="center">
+    <img src="./images/ActOne.jpg">
+</p>
+
 #### To deploy Llama3.1-8b-Instruct on BentoML
 ```
 bentoml cloud login
@@ -22,7 +26,7 @@ and:
 bentoml deploy service:LLM --instance-type "gpu.l4.1" --secret huggingface
 ```
 
-### To deploy Qwen3-8b (a reasoning LLM) on BentoML:
+#### To deploy Qwen3-8b (a reasoning LLM) on BentoML:
 ```
 bentoml cloud login
 ```
