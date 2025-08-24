@@ -46,6 +46,9 @@ and:
 bentoml deploy service:LLM --instance-type "gpu.l4.1" --scaling-min 1 --scaling-max 3
 ```
 
+## Act Two: The Hypermodern RAG application
+Coming soon!
+
 ## Setup
 This repository uses the uv package installer.
 
