@@ -48,6 +48,9 @@ bentoml deploy service:LLM --instance-type "gpu.l4.1" --scaling-min 1 --scaling-
 
 ## Act Two: The Hypermodern RAG application
 Coming soon!
+<p align="center">
+    <img src="./images/ActTwo/ActTwo.png" height="400">
+</p>
 
 ## Setup
 This repository uses the uv package installer.
