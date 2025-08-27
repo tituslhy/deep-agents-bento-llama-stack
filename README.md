@@ -47,7 +47,8 @@ bentoml deploy service:LLM --instance-type "gpu.l4.1" --scaling-min 1 --scaling-
 ```
 
 ## Act Two: The Hypermodern RAG application
-Coming soon!
+Medium Article: [🦙 Would You Like Context With That? — A RAG-as-a-Service Drive-Thru](https://medium.com/mitb-for-all/would-you-like-context-with-that-a-rag-as-a-service-drive-thru-2e5a2867102a)
+
 <p align="center">
     <img src="./images/ActTwo/ActTwo.png" height="400">
 </p>
