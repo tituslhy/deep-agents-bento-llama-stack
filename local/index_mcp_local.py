@@ -3,7 +3,7 @@ from dotenv import load_dotenv, find_dotenv
 
 from fastmcp import FastMCP
 from llama_index.indices.managed.llama_cloud import LlamaCloudIndex
-from llama_index.llms.openai_like import OpenAILike
+from llama_index.llms.ollama import Ollama
 
 _ = load_dotenv(find_dotenv())
 LLAMA_CLOUD_API_KEY = os.environ['LLAMA_CLOUD_API_KEY']
@@ -14,15 +14,7 @@ kwargs = {
     'alpha': 0.5,
     'rerank_top_n': 8
 }
-llm = OpenAILike(
-    model="Qwen/Qwen3-8B",
-    api_key=os.getenv("BENTO_CLOUD_API_KEY"),
-    api_base=f'{os.getenv("qwen3_endpoint_url")}/v1',
-    is_chat_model=True,
-    is_function_calling_model=True,
-    temperature=0,
-    timeout=600,
-)
+llm = Ollama(model="qwen3:latest", request_timeout=6000, temperature=0)
 mcp = FastMCP(
     name='Alita and MCP Zero Knowledge Base',
     port=8000,
