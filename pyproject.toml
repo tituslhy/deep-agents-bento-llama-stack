@@ -26,4 +26,7 @@ dependencies = [
     "pip-tools>=7.5.0",
     "pyngrok>=7.3.0",
     "llama-index-llms-openai-like>=0.4.0",
+    "arize-phoenix-otel>=0.13.0",
+    "openinference-instrumentation-llama-index>=4.3.4",
+    "arize-phoenix>=11.28.0",
 ]
