@@ -53,6 +53,9 @@ Medium Article: [🦙 Would You Like Context With That? — A RAG-as-a-Service D
     <img src="./images/ActTwo/ActTwo.png" height="400">
 </p>
 
+## Act Three: The Hypermodern Agent
+Coming soon!
+
 ## Setup
 This repository uses the uv package installer.
 
