@@ -20,13 +20,8 @@ dependencies = [
     "tqdm>=4.67.1",
     "llama-index-llms-ollama>=0.6.2",
     "llama-index-embeddings-ollama>=0.6.0",
-    "vllm>=0.8.5.post1",
     "bentoml>=1.4.21",
     "fastapi>=0.116.1",
     "pip-tools>=7.5.0",
-    "pyngrok>=7.3.0",
     "llama-index-llms-openai-like>=0.4.0",
-    "arize-phoenix-otel>=0.13.0",
-    "openinference-instrumentation-llama-index>=4.3.4",
-    "arize-phoenix>=11.28.0",
 ]

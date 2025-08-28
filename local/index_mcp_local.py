@@ -6,14 +6,8 @@ from llama_index.indices.managed.llama_cloud import LlamaCloudIndex
 from llama_index.llms.ollama import Ollama
 
 from typing import Annotated
-from openinference.instrumentation.llama_index import LlamaIndexInstrumentor
-from phoenix.otel import register
 
 _ = load_dotenv(find_dotenv())
-
-os.environ["PHOENIX_COLLECTION_ENDPOINT"] = "http://localhost:6006"
-tracer_provider = register()
-LlamaIndexInstrumentor().instrument(tracer_provider=tracer_provider)
 
 LLAMA_CLOUD_API_KEY = os.environ['LLAMA_CLOUD_API_KEY']
 kwargs = {
