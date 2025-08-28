@@ -3,7 +3,6 @@ from dotenv import load_dotenv, find_dotenv
 
 from fastmcp import FastMCP
 
-from llama_index.core.query_engine import RetrieverQueryEngine
 from llama_index.indices.managed.llama_cloud import LlamaCloudIndex
 from llama_index.llms.openai_like import OpenAILike
 
