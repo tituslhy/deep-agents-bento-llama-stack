@@ -1,0 +1,132 @@
+# Alita Agent Tool Creation Process When a Tool Does Not Exist
+
+## 1. Overview
+
+When the Alita framework encounters a task that cannot be completed with its existing toolset, it initiates a self‑driven, multi‑phase workflow to generate, validate, and register a new tool. This process is fully automated, requiring no manual intervention, and is designed to be robust, reproducible, and extensible. The workflow is orchestrated by the **Manager Agent** and leverages several specialized components:
+
+- **MCP Brainstorming** – assesses capability gaps and defines tool specifications.
+- **Web Agent** – searches external resources for relevant code or libraries.
+- **ScriptGeneratingTool** – synthesizes a custom script based on the specification and external references.
+- **CodeRunningTool** – executes the script in an isolated environment to validate functionality.
+- **MCP Packaging** – encapsulates the validated script into a reusable Model Context Protocol (MCP).
+
+The following sections detail each phase of this workflow.
+
+---
+
+## 2. Capability Assessment (MCP Brainstorming)
+
+1. **Trigger**  
+   The Manager Agent detects a functional gap while parsing the task description.  
+2. **Gap Identification**  
+   MCP Brainstorming compares the task requirements against the current tool registry.  
+3. **Specification Generation**  
+   If a gap exists, it produces a detailed specification that includes:
+   - Purpose and scope of the new tool.
+   - Input and output formats.
+   - Integration points with the MCP Box.
+   - Any required environment or dependency constraints.
+
+---
+
+## 3. External Resource Search (Web Agent)
+
+1. **Delegation**  
+   The Manager Agent hands the search query to the Web Agent.  
+2. **Search Execution**  
+   The Web Agent uses lightweight search tools (e.g., `GoogleSearchTool`, `GithubSearchTool`) to locate:
+   - Open‑source libraries that already solve the problem.
+   - Code snippets or documentation that can be adapted.
+3. **Result Aggregation**  
+   Relevant URLs, README excerpts, and code samples are extracted and passed back to the ScriptGeneratingTool.
+
+---
+
+## 4. Script Generation (ScriptGeneratingTool)
+
+1. **Input**  
+   - Task description and sub‑tasks.  
+   - Tool specification from MCP Brainstorming.  
+   - External resources from the Web Agent.  
+2. **Code Construction**  
+   The tool synthesizes a self‑contained script, often in Python, that:
+   - Implements the required functionality (e.g., extracting subtitles from a YouTube 360 VR video).  
+   - Uses any discovered libraries (e.g., `youtube-transcript-api`).  
+3. **Environment Setup**  
+   The script includes instructions for creating a Conda environment:
+   ```bash
+   conda create -n youtube_transcript
+   conda activate youtube_transcript
+   pip install youtube-transcript-api
+   ```
+4. **Self‑Containment**  
+   All dependencies are declared, and hardcoded paths are avoided to ensure portability.
+
+---
+
+## 5. Code Execution & Validation (CodeRunningTool)
+
+1. **Isolated Execution**  
+   The generated script runs in a sandboxed Conda environment to prevent side effects.  
+2. **Output Caching**  
+   Results (e.g., extracted subtitles) are cached for later analysis.  
+3. **Error Handling**  
+   If the script fails, the error is logged and a recovery process is triggered.
+
+---
+
+## 6. Tool Registration & MCP Creation
+
+1. **MCP Packaging**  
+   Upon successful execution, the script is wrapped into an MCP, standardizing its API and integration points.  
+2. **Environment Integration**  
+   The Conda environment configuration is stored alongside the MCP to guarantee reproducibility.  
+3. **Registry Update**  
+   The new MCP is added to the agent’s internal tool registry, making it available for future tasks.
+
+---
+
+## 7. Iterative Refinement & Recovery
+
+1. **Failure Analysis**  
+   The CodeRunningTool identifies root causes (syntax errors, missing dependencies, logic flaws).  
+2. **Fallback Strategies**  
+   The Manager Agent may:
+   - Relax dependency constraints.  
+   - Simplify the script logic.  
+   - Adjust environment specifications.  
+2. **Retry Execution**  
+   After applying fixes, the script is re‑executed. Persistent failures result in discarding the tool and logging the incident for offline improvement.
+
+---
+
+## 8. Environment Management
+
+1. **Metadata Parsing**  
+   The `TextInspectorTool` extracts dependency information from repository metadata (`requirements.txt`, `README.md`).  
+2. **Parallel Initialization**  
+   Conda environments are created locally in parallel, eliminating the need for administrative privileges or containerization.  
+3. **Portability**  
+   Each environment is uniquely named (e.g., derived from a task ID or repository hash) to maintain isolation.
+
+---
+
+## 8. Final Output & Task Completion
+
+1. **Tool Utilization**  
+   The newly registered MCP is invoked to perform the original task.  
+2. **Result Verification**  
+   The output is verified against expected results (e.g., confirming that the extracted subtitle “100000000” matches the scene’s content).  
+3. **Feedback Loop**  
+   Intermediate results are aggregated, and the final output is returned to the user, completing the task.
+
+---
+
+## 9. Key Takeaways
+
+- **Autonomy** – Alita can generate tools on demand without pre‑defined toolkits.  
+- **Scalability** – The modular workflow allows continuous expansion of capabilities.  
+- **Reusability** – Tools are encapsulated as MCPs, enabling reuse across similar tasks.  
+- **Robustness** – Iterative refinement ensures that even initial failures are handled gracefully.
+
+This self‑evolving tool creation pipeline embodies Alita’s core philosophy: minimal pre‑definition coupled with maximal autonomous growth, allowing the framework to adapt to any novel task it encounters.

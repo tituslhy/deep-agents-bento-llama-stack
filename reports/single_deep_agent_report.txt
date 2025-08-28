@@ -1,0 +1,59 @@
+We need to produce a comprehensive report. The user asked: "How does Alita enable agents to create and deploy MCP tools if the agent deems that the tool does not exist?" We need to answer in the same language as the user message. The user message is in English. So we produce an English report. We should not mention ourselves. We should produce a structured report with headings (#, ##, ###). We should use bullet points where appropriate. We should not refer to ourselves. We should not mention the instructions. We should not mention the conversation. We should produce a thorough answer. We should not use the todo list because it's not a multi-step task? Actually the user is asking a question. It's a single question. According to the guidelines, we don't need to use todo list. But we can still produce a thorough answer. The user wants a comprehensive report. We can produce a report with sections: Introduction, Alita's Architecture, MCP Brainstorming, ScriptGeneratingTool, CodeRunningTool, Environment Management, MCP Box, Empirical Validation, Limitations, Conclusion. Use headings. Use bullet points. Use simple language. Avoid self-referential. Provide facts. Use references to the context. We should not mention the context. Just present the answer. Let's produce.## Alita’s Mechanism for On‑Demand MCP Tool Creation and Deployment
+
+### 1. Overview
+Alita is a generalist agent that can autonomously generate, validate, and register new Model Context Protocol (MCP) tools whenever the task it faces cannot be solved with the tools it already possesses. The process is fully automated and relies on a small set of core components that work together to turn a high‑level task description into a reusable, sandboxed MCP server.
+
+### 2. Identifying a Missing Capability
+- **MCP Brainstorming**  
+  - The agent first evaluates the current toolset against the requirements of the task.  
+  - If a required operation (e.g., extracting subtitles from a YouTube video) is not covered, the brainstorming component flags a *gap* and proposes the creation of a new tool.  
+  - This step ensures that tool generation is driven by actual need rather than pre‑defined workflows.
+
+### 3. Generating the Tool Code
+- **ScriptGeneratingTool**  
+  - Receives a precise sub‑task description from the manager agent.  
+  - Optionally queries the web agent to locate relevant open‑source snippets or libraries (e.g., `youtube-transcript-api`).  
+  - Synthesizes a self‑contained script that:
+    - Performs the required operation.  
+    - Declares its dependencies (e.g., `pip install youtube-transcript-api`).  
+    - Includes environment‑setup instructions (e.g., create a Conda environment).  
+  - The output is a ready‑to‑run Python script that can be executed in isolation.
+
+### 4. Validating and Registering the Tool
+- **CodeRunningTool**  
+  - Executes the generated script in a sandboxed environment to avoid side effects on the host system.  
+  - If the script runs successfully:
+    - The output (e.g., extracted subtitles) is cached.  
+    - The script is wrapped as an MCP server and stored in the **MCP Box** for future reuse.  
+  - If the script fails:
+    - The tool is automatically refined (e.g., adjust dependency versions, simplify code).  
+    - The process repeats until the script passes or a maximum number of attempts is reached.
+
+### 5. Environment Management
+- Each new MCP is isolated in its own Conda or virtual environment.  
+- The environment definition is derived from the script’s metadata (requirements, setup commands).  
+- This isolation guarantees that the new tool does not interfere with existing tools or the host system.
+
+### 6. Reusability and Sharing
+- Once validated, the MCP is registered in the **MCP Box**, a central repository of reusable tools.  
+- Other agents can retrieve and invoke the MCP without needing to regenerate it.  
+- The MCP can be adapted to similar tasks by reusing the same environment and code base.
+
+### 7. Empirical Evidence of Effectiveness
+- On benchmarks such as GAIA, Mathvista, and PathVQA, Alita achieved:
+  - **GAIA**: 75.15 % pass@1 and 87.27 % pass@3, outperforming systems with far more handcrafted complexity.  
+  - The dynamic MCP creation process allowed Alita to solve tasks that required specialized operations (e.g., video subtitle extraction) without prior hard‑coding.
+
+### 8. Limitations
+- **LLM Coding Quality**: The reliability of generated tools depends on the underlying language model’s coding proficiency.  
+- **Resource Consumption**: Generating, testing, and registering MCPs requires compute resources, which may be a constraint in low‑power environments.
+
+### 9. Conclusion
+Alita’s architecture enables agents to create and deploy MCP tools on demand through a tightly coupled pipeline:
+
+1. **Gap detection** via MCP Brainstorming.  
+2. **Code synthesis** with ScriptGeneratingTool.  
+3. **Sandboxed validation** using CodeRunningTool.  
+4. **Environment isolation** and **MCP Box registration**.
+
+This self‑evolving approach allows Alita to adapt to new tasks without manual engineering, ensuring scalability, reusability, and cross‑ecosystem compatibility.
