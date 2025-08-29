@@ -54,7 +54,7 @@ async def alita_documentation(
         return alita_engine.query(query + " Be verbose and exhaustive in your reply.")
         
     response = alita_knowledge_base(query=query)
-    return str(response)
+    return response
 
 @mcp.tool()
 async def mcp_zero_documentation(
