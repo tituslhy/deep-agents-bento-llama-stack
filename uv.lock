@@ -740,7 +740,7 @@ requires-dist = [
     { name = "a2a-sdk", specifier = ">=0.3.3" },
     { name = "beeai-sdk", specifier = ">=0.3.2" },
     { name = "bentoml", specifier = ">=1.4.21" },
-    { name = "deepagents", specifier = ">=0.0.3" },
+    { name = "deepagents", specifier = ">=0.0.4" },
     { name = "fastapi", specifier = ">=0.116.1" },
     { name = "fastmcp", specifier = ">=2.11.3" },
     { name = "ipykernel", specifier = ">=6.30.1" },
@@ -764,16 +764,16 @@ requires-dist = [
 
 [[package]]
 name = "deepagents"
-version = "0.0.3"
+version = "0.0.4"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "langchain" },
     { name = "langchain-anthropic" },
     { name = "langgraph" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/bb/c2/3f991c1c38c769a26e44684ca94f8aaa4df26e156d99098a3386bf4fefed/deepagents-0.0.3.tar.gz", hash = "sha256:b381c03bfd2b0c29a3646b58e02cfab1ae55c2c05ff1dcd11df0690b5b014933", size = 14371, upload-time = "2025-07-31T14:21:10.106Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/d3/ca/401f366c7d69e48bf9863642ca7eb07792caf451b0f9e618038d8f9f2fe3/deepagents-0.0.4.tar.gz", hash = "sha256:c17c66264c9073ded9e4228825d57cc980d3ce895300d09280f2bab906c746b1", size = 16988, upload-time = "2025-08-22T17:23:46.143Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/f5/9b/226c9d9cc58e194b53142873f354bc7d4f7cbd033a699f67242ef731dae0/deepagents-0.0.3-py3-none-any.whl", hash = "sha256:bbccce588ef634a1a954e95e4daacd1a56432c52da50b50db50ed6456856bb29", size = 16150, upload-time = "2025-07-31T14:21:09.315Z" },
+    { url = "https://files.pythonhosted.org/packages/bc/d0/ad2ed26e8bfc6afbba5bde132e82290c79a2db431eebb6c879c634b1d6f7/deepagents-0.0.4-py3-none-any.whl", hash = "sha256:45c22c91e1bac32e35df402430faf2f4f9ebd248e060b9737c17be9852d9c1b0", size = 19049, upload-time = "2025-08-22T17:23:45.232Z" },
 ]
 
 [[package]]
