@@ -27,12 +27,6 @@ mcp = FastMCP(
     host="0.0.0.0",
 )
 
-
-@traceable(run_type="tool", name="Llama Cloud RAG Engine")
-def invoke_query_engine(query_engine: RetrieverQueryEngine, query: str):
-    """Light wrapper to trace query engine runs on LangSmith."""
-    return query_engine.query(query + " Be verbose and exhaustive in your reply.")
-
 @mcp.tool()
 async def alita_documentation(
     query: Annotated[str, "The question to ask about the Alita framework in complete sentences."]
@@ -45,9 +39,12 @@ async def alita_documentation(
         api_key=LLAMA_CLOUD_API_KEY,
     )
     alita_engine = alita_index.as_query_engine(llm=llm, **kwargs)
-    response = invoke_query_engine(
-        query_engine=alita_engine, query=query
-    )
+    @traceable(type="tool", name="alita")
+    def alita_knowledge_base(query: str):
+        """For traceability of the alita RAG engine"""
+        return alita_engine.query(query + " Be verbose and exhaustive in your reply.")
+        
+    response = alita_knowledge_base(query=query)
     return str(response)
 
 @mcp.tool()
@@ -62,9 +59,13 @@ async def mcp_zero_documentation(
         api_key=LLAMA_CLOUD_API_KEY,
     )
     mcp_zero_engine = mcp_zero_index.as_query_engine(llm=llm, **kwargs)
-    response = invoke_query_engine(
-        query_engine=mcp_zero_engine, query=query
-    )
+    @traceable(type="tool", name="mcp_zero")
+    def mcp_zero_knowledge_base(query: str):
+        """For traceability of the mcp zero RAG engine"""
+        
+        return mcp_zero_engine.query(query + " Be verbose and exhaustive in your reply.")
+        
+    response = mcp_zero_knowledge_base(query=query)
     return str(response)
 
 if __name__ == "__main__":
