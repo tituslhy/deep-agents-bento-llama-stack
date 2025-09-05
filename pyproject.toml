@@ -28,4 +28,5 @@ dependencies = [
     "langsmith>=0.4.14",
     "beeai-sdk>=0.3.2",
     "a2a-sdk>=0.3.3",
+    "pyppeteer>=2.0.0",
 ]

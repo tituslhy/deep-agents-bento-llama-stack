@@ -20,7 +20,7 @@ kwargs = {
     'alpha': 0.5,
     'rerank_top_n': 8
 }
-llm = Ollama(model="qwen3:latest", request_timeout=6000, temperature=0)
+llm = Ollama(model="gemma3:latest", request_timeout=6000, temperature=0)
 mcp = FastMCP(
     name='Alita and MCP Zero Knowledge Base',
     port=8000,
