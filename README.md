@@ -54,7 +54,11 @@ Medium Article: [🦙 Would You Like Context With That? — A RAG-as-a-Service D
 </p>
 
 ## Act Three: The Hypermodern Agent
-Coming soon!
+Medium Article: [Would you like an agent with that? — Introducing the Deep Agents SDK](https://medium.com/mitb-for-all/would-you-like-an-agent-with-that-introducing-the-deep-agents-sdk-c4e0670440ea)
+
+<p align="center">
+    <img src="./images/ActThree/ActThree.png" height="400">
+</p>
 
 ## Setup
 This repository uses the uv package installer.
